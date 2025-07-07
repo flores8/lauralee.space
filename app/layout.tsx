@@ -1,6 +1,7 @@
 // app/layout.tsx
 import './globals.css';
 import type { Metadata } from 'next';
+import Link from 'next/link';
 import ThemeToggle from './components/ThemeToggle';
 
 export const metadata: Metadata = {
@@ -14,10 +15,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body>
         <header className="site-header">
           <nav className="site-nav">
-            <a href="/">Home</a>
-            <a href="/writing">Writing</a>
-            <a href="/reading">Reading</a>
-            <a href="/projects">Projects</a>
+            <Link href="/">Home</Link>
+            <Link href="/writing">Writing</Link>
+            <Link href="/reading">Reading</Link>
+            <Link href="/projects">Projects</Link>
           </nav>
           <ThemeToggle />
         </header>
