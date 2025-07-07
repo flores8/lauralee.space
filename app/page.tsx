@@ -29,7 +29,7 @@ export default function HomePage() {
             <h2>Reading</h2>
             <p>Books I&apos;m loving, learning from, or wrestling with. The ideas that shape my thinking.</p>
             <Link href="/reading" className="card-link">
-              See what I'm reading →
+              See what I&apos;m reading →
             </Link>
           </div>
           <div className="card-decoration"></div>
