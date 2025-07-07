@@ -1,6 +1,7 @@
 // app/layout.tsx
 import './globals.css';
 import type { Metadata } from 'next';
+import ThemeToggle from './components/ThemeToggle';
 
 export const metadata: Metadata = {
   title: 'lauralee.space',
@@ -11,16 +12,17 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en">
       <body>
-        <header className="p-6 border-b">
-          <nav className="flex gap-6 text-sm">
+        <header className="site-header">
+          <nav className="site-nav">
             <a href="/">Home</a>
             <a href="/writing">Writing</a>
             <a href="/reading">Reading</a>
             <a href="/projects">Projects</a>
           </nav>
+          <ThemeToggle />
         </header>
-        <main className="p-6 max-w-2xl mx-auto">{children}</main>
-        <footer className="p-6 text-xs text-center text-gray-500">© {new Date().getFullYear()} Lauralee Flores</footer>
+        <main className="site-main">{children}</main>
+        <footer className="site-footer">© {new Date().getFullYear()} Lauralee Flores</footer>
       </body>
     </html>
   );

@@ -1,22 +1,156 @@
 /* globals.css */
-body {
-  font-family: Inter, system-ui, sans-serif;
-  background: #fefefe;
-  color: #222;
-  margin: 0;
-  line-height: 1.6;
+@import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,700;1,400&family=Inter:wght@400;500;700&display=swap');
+
+:root {
+  /* Fonts */
+  --font-serif: 'EB Garamond', serif;
+  --font-sans: 'Inter', sans-serif;
+  
+  /* Light Mode */
+  --color-bg: #fdfcfb;
+  --color-text: #1c1c1c;
+  --color-muted: #e5e5e5;
+
+  /* Accent Colors */
+  --color-accent-blue: #305aff;
+  --color-accent-green: #aaffaa;
+  --color-accent-pink: #f4b6c2;
+
+  /* Typography */
+  --font-body: var(--font-serif);
+  --font-ui: var(--font-sans);
+
+  /* Transitions */
+  --transition: all 0.3s ease;
 }
 
-h1, h2, h3 {
-  font-family: 'Georgia', serif;
-  margin-top: 2rem;
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-bg: #1b1b1b;
+    --color-text: #fdfcfb;
+    --color-muted: #333;
+
+    /* Optional: tweak accents for better contrast if needed */
+    --color-accent-blue: #7da6ff;
+    --color-accent-green: #9fe79c;
+    --color-accent-pink: #f7b8cd;
+  }
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  margin: 0;
+  padding: 0;
+  line-height: 1.6;
+  transition: var(--transition);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-ui);
+  margin-top: 1.5rem;
+  margin-bottom: 0.5rem;
 }
 
 a {
-  color: #2b6cb0;
-  text-decoration: none;
+  color: var(--color-accent-blue);
+  text-decoration: underline;
+  transition: var(--transition);
 }
 
 a:hover {
-  text-decoration: underline;
+  opacity: 0.8;
+}
+
+::selection {
+  background: var(--color-accent-pink);
+  color: var(--color-bg);
+}
+
+/* Layout Components */
+.site-header {
+  padding: 1.5rem;
+  border-bottom: 1px solid var(--color-muted);
+  font-family: var(--font-ui);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.site-nav {
+  display: flex;
+  gap: 1.5rem;
+  font-size: 0.875rem;
+}
+
+.site-main {
+  padding: 1.5rem;
+  max-width: 42rem;
+  margin: 0 auto;
+}
+
+.site-footer {
+  padding: 1.5rem;
+  font-size: 0.75rem;
+  text-align: center;
+  color: var(--color-muted);
+  font-family: var(--font-ui);
+}
+
+/* Theme Toggle */
+.theme-toggle {
+  display: flex;
+  background: var(--color-muted);
+  border: 1px solid var(--color-muted);
+  border-radius: 0.25rem;
+  padding: 0.0625rem;
+  cursor: pointer;
+  font-family: var(--font-ui);
+  font-size: 0.625rem;
+  color: var(--color-text);
+  transition: var(--transition);
+  gap: 0;
+  position: relative;
+}
+
+.theme-toggle:hover {
+  opacity: 0.8;
+}
+
+.theme-toggle svg {
+  width: 0.75rem;
+  height: 0.75rem;
+}
+
+.theme-option {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.25rem;
+  border-radius: 0.1875rem;
+  transition: var(--transition);
+  min-width: 1.25rem;
+  height: 1.25rem;
+}
+
+.theme-option.active {
+  background: var(--color-bg);
+  color: var(--color-text);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.theme-option:not(.active) {
+  color: var(--color-text);
+  opacity: 0.6;
+}
+
+/* Dark mode class for manual toggle */
+body.dark {
+  --color-bg: #1b1b1b;
+  --color-text: #fdfcfb;
+  --color-muted: #333;
+  --color-accent-blue: #7da6ff;
+  --color-accent-green: #9fe79c;
+  --color-accent-pink: #f7b8cd;
 }
