@@ -176,7 +176,7 @@ a:hover::before {
   left: 0;
   width: 0;
   height: 2px;
-  background: var(--color-accent-green);
+  background: var(--color-accent-pink);
   transition: var(--transition);
   transform: skew(-1deg);
 }
@@ -383,17 +383,35 @@ a:hover::before {
 }
 
 .external-link {
-  color: var(--color-accent-blue);
+  color: var(--color-accent-pink);
   margin: 0 var(--space-xs);
   border-bottom: none;
+  transition: var(--transition);
+  position: relative;
 }
 
 .external-link::before {
   display: none;
 }
 
+.external-link::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--color-accent-pink);
+  transition: var(--transition);
+  transform: skew(-2deg);
+}
+
 .external-link:hover {
-  color: var(--color-accent-green);
+  color: var(--color-accent-pink);
+}
+
+.external-link:hover::after {
+  width: 100%;
 }
 
 /* Theme Toggle - More tactile */
