@@ -8,7 +8,7 @@ export default function HomePage() {
       
       <p className="intro-text">
         This is my personal corner of the internet—unfiltered, evolving, and deeply mine. 
-        Here, I write, share what I'm reading, and experiment with ideas that don't need 
+        Here, I write, share what I&apos;m reading, and experiment with ideas that don&apos;t need 
         to be portfolio-ready or professionally polished.
       </p>
 
@@ -27,7 +27,7 @@ export default function HomePage() {
         <div className="sketchbook-card reading-card">
           <div className="card-content">
             <h2>Reading</h2>
-            <p>Books I'm loving, learning from, or wrestling with. The ideas that shape my thinking.</p>
+            <p>Books I&apos;m loving, learning from, or wrestling with. The ideas that shape my thinking.</p>
             <Link href="/reading" className="card-link">
               See what I'm reading →
             </Link>
@@ -49,8 +49,8 @@ export default function HomePage() {
 
       <div className="about-note">
         <p>
-          <strong>No pressure to perform.</strong> This space isn't trying to sell anything. 
-          It's here so I can think out loud, chase sparks of inspiration, and document 
+          <strong>No pressure to perform.</strong> This space isn&apos;t trying to sell anything. 
+          It&apos;s here so I can think out loud, chase sparks of inspiration, and document 
           half-formed thoughts.
         </p>
       </div>
