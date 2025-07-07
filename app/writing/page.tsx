@@ -1,4 +1,9 @@
 // app/writing/page.tsx
 export default function WritingPage() {
-  return <h1 className="text-2xl font-serif">Writing</h1>;
+  return (
+    <div className="content-section">
+      <h1>Writing</h1>
+      <p>Thoughts, essays, and musings in progress.</p>
+    </div>
+  );
 }

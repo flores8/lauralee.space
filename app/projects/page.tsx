@@ -1,4 +1,9 @@
-// app/writing/page.tsx
+// app/projects/page.tsx
 export default function ProjectsPage() {
-  return <h1 className="text-2xl font-serif">Projects</h1>;
+  return (
+    <div className="content-section">
+      <h1>Projects</h1>
+      <p>Creative experiments and side projects in motion.</p>
+    </div>
+  );
 }

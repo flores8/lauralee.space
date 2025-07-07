@@ -1,4 +1,9 @@
-// app/writing/page.tsx
+// app/reading/page.tsx
 export default function ReadingPage() {
-  return <h1 className="text-2xl font-serif">Reading</h1>;
+  return (
+    <div className="content-section">
+      <h1>Reading</h1>
+      <p>Books I'm loving and learning from.</p>
+    </div>
+  );
 }
