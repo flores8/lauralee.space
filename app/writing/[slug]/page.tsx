@@ -4,8 +4,13 @@ import path from 'path';
 import matter from 'gray-matter';
 import { MDXRemote } from 'next-mdx-remote/rsc';
 
-export default async function PostPage({ params }: { params: { slug: string } }) {
-  const filePath = path.join(process.cwd(), 'content/writing', `${params.slug}.mdx`);
+interface PageProps {
+  params: Promise<{ slug: string }>;
+}
+
+export default async function PostPage({ params }: PageProps) {
+  const { slug } = await params;
+  const filePath = path.join(process.cwd(), 'content/writing', `${slug}.mdx`);
   const fileContent = fs.readFileSync(filePath, 'utf8');
   const { content, data } = matter(fileContent);
 
