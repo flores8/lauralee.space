@@ -1,0 +1,35 @@
+// prisma/schema.prisma
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Post {
+  id        String   @id @default(cuid())
+  title     String
+  slug      String   @unique
+  content   String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  published Boolean  @default(false)
+}
+
+model Book {
+  id        String   @id @default(cuid())
+  title     String
+  author    String
+  notes     String?
+  status    ReadingStatus
+  addedAt   DateTime @default(now())
+}
+
+enum ReadingStatus {
+  READING
+  FINISHED
+  WANT_TO_READ
+}
