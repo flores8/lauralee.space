@@ -6,7 +6,6 @@ import Link from 'next/link';
 
 type Post = {
   title: string;
-  date: string;
   slug: string;
 };
 
@@ -19,13 +18,16 @@ export default function WritingPage() {
       const filePath = path.join(postsDir, filename);
       const fileContent = fs.readFileSync(filePath, 'utf8');
       const { data } = matter(fileContent);
+      
       return {
         title: data.title,
         slug: data.slug,
-        date: data.date,
       };
     })
-    .sort((a, b) => +new Date(b.date) - +new Date(a.date));
+    .sort((a, b) => {
+      // Sort by title alphabetically since we're not showing dates
+      return a.title.localeCompare(b.title);
+    });
 
   return (
     <div>
@@ -33,16 +35,25 @@ export default function WritingPage() {
         <h1>Writing</h1>
         <p>Thoughts, essays, and musings in progress.</p>
       </div>
-      <ul className="space-y-4">
-        {posts.map((post) => (
-          <li key={post.slug}>
-            <Link href={`/writing/${post.slug}`}>
-              <span className="text-xl font-serif">{post.title}</span>
-              <div className="text-sm text-gray-500">{new Date(post.date).toLocaleDateString()}</div>
-            </Link>
-          </li>
-        ))}
-      </ul>
+      
+      {posts.length > 0 ? (
+        <ul className="posts-list">
+          {posts.map((post) => (
+            <li key={post.slug}>
+              <Link href={`/writing/${post.slug}`} className="post-item">
+                <span className="line-top"></span>
+                <span className="line-bottom"></span>
+                <h2 className="post-title">{post.title}</h2>
+              </Link>
+            </li>
+          ))}
+        </ul>
+      ) : (
+        <div className="posts-empty">
+          <div className="empty-icon">✍️</div>
+          <p>No posts yet. The first one is brewing...</p>
+        </div>
+      )}
     </div>
   );
 }

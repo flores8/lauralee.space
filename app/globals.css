@@ -530,4 +530,122 @@ body.dark {
   .card-content p {
     font-size: 1.125rem;
   }
+
+  .post-item {
+    padding: var(--space-xs) var(--space-xs);
+    padding-left: var(--space-sm);
+  }
+
+  .post-title {
+    font-size: 1.25rem;
+  }
+}
+
+
+
+.posts-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.post-item {
+  display: block;
+  margin-bottom: var(--space-md);
+  padding: var(--space-sm) var(--space-sm);
+  transition: var(--transition);
+  position: relative;
+  padding-left: var(--space-sm);
+  border-radius: 8px;
+  text-decoration: none;
+  color: inherit;
+  border-bottom: none;
+}
+
+.post-item::before {
+  display: none;
+}
+
+.post-item:hover {
+  background: var(--color-bg);
+}
+
+.post-item::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 2px;
+  height: 0;
+  background: var(--color-accent-pink);
+  transition: var(--transition-slow);
+  transform-origin: top;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.post-item .line-top {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 2px;
+  height: 0;
+  background: var(--color-accent-pink);
+  transition: var(--transition-slow);
+  transform-origin: top;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.post-item .line-bottom {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 2px;
+  height: 0;
+  background: var(--color-accent-pink);
+  transition: var(--transition-slow);
+  transform-origin: bottom;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.post-item:hover .line-top {
+  height: 50%;
+}
+
+.post-item:hover .line-bottom {
+  height: 50%;
+}
+
+
+
+.post-title {
+  font-family: var(--font-body);
+  font-size: 1.7rem;
+  font-weight: 900;
+  line-height: 1.2;
+  margin: 0;
+  color: var(--color-text);
+  transition: var(--transition);
+}
+
+/* Empty state */
+.posts-empty {
+  text-align: center;
+  padding: var(--space-xl) 0;
+  color: var(--color-muted);
+}
+
+.posts-empty p {
+  font-size: 1.25rem;
+  margin-bottom: var(--space-sm);
+}
+
+.posts-empty .empty-icon {
+  font-size: 3rem;
+  margin-bottom: var(--space-md);
+  opacity: 0.5;
 }
