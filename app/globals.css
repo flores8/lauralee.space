@@ -197,7 +197,6 @@ a:hover::before {
 
 .nav-link-active {
   color: var(--color-accent-pink-dark) !important;
-  font-weight: 600;
 }
 
 .site-main {
