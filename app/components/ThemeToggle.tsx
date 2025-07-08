@@ -6,16 +6,12 @@ type ThemeMode = 'system' | 'light' | 'dark';
 
 export default function ThemeToggle() {
   const [theme, setTheme] = useState<ThemeMode>('system');
-  const [systemTheme, setSystemTheme] = useState<'light' | 'dark'>('light');
   const themeRef = useRef<ThemeMode>('system');
 
   useEffect(() => {
     // Check for saved theme preference
     const savedTheme = localStorage.getItem('theme') as ThemeMode;
     const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    
-    // Set initial system theme
-    setSystemTheme(prefersDark ? 'dark' : 'light');
     
     // Set initial theme - if no saved theme, default to system
     const initialTheme = savedTheme || 'system';
@@ -32,9 +28,6 @@ export default function ThemeToggle() {
     // Listen for system theme changes
     const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
     const handleSystemThemeChange = (e: MediaQueryListEvent) => {
-      const newSystemTheme = e.matches ? 'dark' : 'light';
-      setSystemTheme(newSystemTheme);
-      
       // Only update if current theme is 'system'
       if (themeRef.current === 'system') {
         applyTheme('system', e.matches);
