@@ -77,13 +77,6 @@ export default function ThemeToggle() {
     }
   };
 
-  const getActiveTheme = (): 'light' | 'dark' => {
-    if (theme === 'system') {
-      return systemTheme;
-    }
-    return theme;
-  };
-
   const isActive = (mode: ThemeMode) => {
     if (mode === 'system') {
       return theme === 'system';
