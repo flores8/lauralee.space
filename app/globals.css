@@ -185,6 +185,15 @@ a:hover::before {
   width: 100%;
 }
 
+.nav-link-active::after {
+  width: 100% !important;
+}
+
+.nav-link-active {
+  color: var(--color-accent-pink) !important;
+  font-weight: 600;
+}
+
 .site-main {
   padding: var(--space-xl) var(--space-lg);
   max-width: 48rem;

@@ -7,7 +7,7 @@ export default function HomePage() {
       <h1>Welcome to my digital sketchbook</h1>
       
       <p className="intro-text">
-        This is my personal corner of the internet—unfiltered, evolving, and deeply mine. 
+      This is my personal corner of the internet. A space that&apos;s unfiltered, evolving, and deeply mine. 
         Here, I write, share what I&apos;m reading, and experiment with ideas that don&apos;t need 
         to be portfolio-ready or professionally polished.
       </p>
@@ -50,7 +50,7 @@ export default function HomePage() {
       <div className="about-note">
         <p>
           <strong>No pressure to perform.</strong> This space isn&apos;t trying to sell anything. 
-          It&apos;s here so I can think out loud, chase sparks of inspiration, and document 
+          It&apos;s here so I can think out loud, experiment with ideas, chase sparks of inspiration, and document 
           half-formed thoughts.
         </p>
       </div>

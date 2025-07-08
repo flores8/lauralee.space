@@ -1,8 +1,8 @@
 // app/layout.tsx
 import './globals.css';
 import type { Metadata } from 'next';
-import Link from 'next/link';
 import ThemeToggle from './components/ThemeToggle';
+import Navigation from './components/Navigation';
 
 export const metadata: Metadata = {
   title: 'lauralee.space',
@@ -14,12 +14,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en">
       <body>
         <header className="site-header">
-          <nav className="site-nav">
-            <Link href="/">Home</Link>
-            <Link href="/writing">Writing</Link>
-            <Link href="/reading">Reading</Link>
-            <Link href="/projects">Projects</Link>
-          </nav>
+          <Navigation />
           <ThemeToggle />
         </header>
         <main className="site-main">{children}</main>
