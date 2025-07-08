@@ -15,10 +15,34 @@ export default async function PostPage({ params }: PageProps) {
   const { content, data } = matter(fileContent);
 
   return (
-    <article className="prose max-w-none">
-      <h1 className="font-serif text-3xl mb-2">{data.title}</h1>
-      <div className="text-sm text-gray-500 mb-6">{new Date(data.date).toLocaleDateString()}</div>
-      <MDXRemote source={content} />
-    </article>
+    <div>
+      <div className="content-section">
+        <h1>{data.title}</h1>
+      </div>
+      
+      <div className="post-meta">
+        <time className="post-date" dateTime={data.date}>
+          {new Date(data.date).toLocaleDateString('en-US', {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric'
+          })}
+        </time>
+      </div>
+      
+      <article className="blog-post">
+        <div className="post-content">
+          <MDXRemote source={content} />
+        </div>
+        
+        <footer className="post-footer">
+          <div className="post-divider">
+            <span className="divider-line"></span>
+            <span className="divider-ornament">✦</span>
+            <span className="divider-line"></span>
+          </div>
+        </footer>
+      </article>
+    </div>
   );
 }
