@@ -18,6 +18,9 @@
   --color-accent-green: #7fb069;
   --color-accent-pink: #d4a5a5;
   --color-accent-yellow: #f4d03f;
+  
+  /* Darker versions for active navigation text */
+  --color-accent-pink-dark: #b88a8a;
 
   /* Typography */
   --font-body: var(--font-serif);
@@ -48,6 +51,9 @@
     --color-accent-green: #a8d5a3;
     --color-accent-pink: #e8b8c8;
     --color-accent-yellow: #f0d080;
+    
+    /* Darker versions for active navigation text */
+    --color-accent-pink-dark: #d4a5a5;
   }
 }
 
@@ -190,7 +196,7 @@ a:hover::before {
 }
 
 .nav-link-active {
-  color: var(--color-accent-pink) !important;
+  color: var(--color-accent-pink-dark) !important;
   font-weight: 600;
 }
 
@@ -494,6 +500,7 @@ a:hover::before {
   --color-accent-green: #7fb069;
   --color-accent-pink: #d4a5a5;
   --color-accent-yellow: #f4d03f;
+  --color-accent-pink-dark: #b88a8a;
 }
 
 :root[data-theme="dark"] {
@@ -506,6 +513,7 @@ a:hover::before {
   --color-accent-green: #a8d5a3;
   --color-accent-pink: #e8b8c8;
   --color-accent-yellow: #f0d080;
+  --color-accent-pink-dark: #d4a5a5;
 }
 
 /* Dark mode class for manual toggle */
@@ -519,6 +527,7 @@ body.dark {
   --color-accent-green: #a8d5a3;
   --color-accent-pink: #e8b8c8;
   --color-accent-yellow: #f0d080;
+  --color-accent-pink-dark: #d4a5a5;
 }
 
 /* Responsive adjustments */
