@@ -36,7 +36,7 @@
 }
 
 @media (prefers-color-scheme: dark) {
-  :root {
+  :root:not([data-theme]) {
     --color-bg: #1a1a1a;
     --color-text: #f0f0f0;
     --color-muted: #b8b8b8;
@@ -430,7 +430,6 @@ a:hover::before {
   border: 1px solid var(--color-border);
   border-radius: 0.5rem;
   padding: 0.125rem;
-  cursor: pointer;
   font-family: var(--font-ui);
   font-size: 0.625rem;
   color: var(--color-text);
@@ -454,11 +453,17 @@ a:hover::before {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0.375rem;
+  padding: 0.25rem;
   border-radius: 0.375rem;
   transition: var(--transition);
-  min-width: 1.5rem;
-  height: 1.5rem;
+  min-width: 1.25rem;
+  height: 1.25rem;
+  flex: 1;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: inherit;
+  font-family: inherit;
 }
 
 .theme-option.active {
@@ -471,6 +476,36 @@ a:hover::before {
 .theme-option:not(.active) {
   color: var(--color-muted);
   opacity: 0.7;
+}
+
+.theme-option:hover:not(.active) {
+  opacity: 0.9;
+  transform: scale(1.02);
+}
+
+/* Explicit theme overrides */
+:root[data-theme="light"] {
+  --color-bg: #fefefe;
+  --color-text: #2a2a2a;
+  --color-muted: #8a8a8a;
+  --color-border: #e8e8e8;
+  --color-paper: #faf9f7;
+  --color-accent-blue: #4a6fa5;
+  --color-accent-green: #7fb069;
+  --color-accent-pink: #d4a5a5;
+  --color-accent-yellow: #f4d03f;
+}
+
+:root[data-theme="dark"] {
+  --color-bg: #1a1a1a;
+  --color-text: #f0f0f0;
+  --color-muted: #b8b8b8;
+  --color-border: #3a3a3a;
+  --color-paper: #2a2a2a;
+  --color-accent-blue: #8bb3ff;
+  --color-accent-green: #a8d5a3;
+  --color-accent-pink: #e8b8c8;
+  --color-accent-yellow: #f0d080;
 }
 
 /* Dark mode class for manual toggle */
