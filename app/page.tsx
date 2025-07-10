@@ -13,38 +13,38 @@ export default function HomePage() {
       </p>
 
       <div className="sketchbook-grid">
-        <div className="sketchbook-card writing-card">
+        <Link href="/writing" className="sketchbook-card writing-card">
           <div className="card-content">
             <h2>Writing</h2>
             <p>Musings, essays, and meanderings in progress. Thoughts that need room to breathe.</p>
-            <Link href="/writing" className="card-link">
+            <span className="card-link">
               Read my thoughts →
-            </Link>
+            </span>
           </div>
           <div className="card-decoration"></div>
-        </div>
+        </Link>
 
-        <div className="sketchbook-card reading-card">
+        <Link href="/reading" className="sketchbook-card reading-card">
           <div className="card-content">
             <h2>Reading</h2>
             <p>Books I&apos;m loving, learning from, or wrestling with. The ideas that shape my thinking.</p>
-            <Link href="/reading" className="card-link">
+            <span className="card-link">
               See what I&apos;m reading →
-            </Link>
+            </span>
           </div>
           <div className="card-decoration"></div>
-        </div>
+        </Link>
 
-        <div className="sketchbook-card projects-card">
+        <Link href="/projects" className="sketchbook-card projects-card">
           <div className="card-content">
             <h2>Projects</h2>
             <p>Creative experiments, design tests, and imperfect ideas in motion. Work in progress.</p>
-            <Link href="/projects" className="card-link">
+            <span className="card-link">
               Explore experiments →
-            </Link>
+            </span>
           </div>
           <div className="card-decoration"></div>
-        </div>
+        </Link>
       </div>
 
       <div className="about-note">

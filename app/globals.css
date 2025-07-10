@@ -271,6 +271,9 @@ a:hover::before {
   transition: var(--transition-slow);
   transform: rotate(-0.5deg);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  text-decoration: none;
+  color: inherit;
+  display: block;
 }
 
 .sketchbook-card:nth-child(even) {
@@ -311,10 +314,54 @@ a:hover::before {
   padding: var(--space-xs) var(--space-sm);
   margin: calc(-1 * var(--space-xs)) calc(-1 * var(--space-sm));
   cursor: pointer;
+  text-decoration: none;
 }
 
 .card-link::before {
   display: none;
+}
+
+/* Remove link styling from card-link since it's now a span inside a link */
+.sketchbook-card .card-link {
+  border-bottom: none;
+}
+
+.sketchbook-card .card-link::before {
+  display: none;
+}
+
+.sketchbook-card .card-link::after {
+  display: none;
+}
+
+/* Remove yellow underline effect from sketchbook cards */
+.sketchbook-card::before {
+  display: none;
+}
+
+.sketchbook-card:hover::before {
+  display: none;
+}
+
+/* Color-coordinate the border-bottom effect for each card */
+.sketchbook-card {
+  border-bottom: 1px solid transparent;
+}
+
+.sketchbook-card:hover {
+  border-bottom-color: var(--color-accent-blue);
+}
+
+.writing-card:hover {
+  border-bottom-color: var(--color-accent-pink);
+}
+
+.reading-card:hover {
+  border-bottom-color: var(--color-accent-green);
+}
+
+.projects-card:hover {
+  border-bottom-color: var(--color-accent-blue);
 }
 
 /* Writing card link - matches pink circle */
