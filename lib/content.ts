@@ -1,7 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
-import { ContentItem, ContentWithContent, WritingPost, ReadingItem, ContentType } from './types';
+import { ContentItem, ContentWithContent, WritingPost, ReadingItem, ProjectItem, ContentType } from './types';
 
 const CONTENT_DIR = path.join(process.cwd(), 'content');
 
@@ -50,8 +50,9 @@ export function getContentItemBySlug(type: ContentType, slug: string): ContentWi
 export function getAllContentItems(): ContentItem[] {
   const writing = getContentItems('writing');
   const reading = getContentItems('reading');
+  const projects = getContentItems('projects');
   
-  return [...writing, ...reading]
+  return [...writing, ...reading, ...projects]
     .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 }
 
@@ -78,7 +79,7 @@ export function getRelatedContent(item: ContentItem): ContentItem[] {
       );
       related.push(...inspirationSources);
     }
-  } else {
+  } else if (item.type === 'reading') {
     const readingItem = item as ReadingItem;
     
     // Find related writing posts
@@ -88,6 +89,34 @@ export function getRelatedContent(item: ContentItem): ContentItem[] {
         readingItem.related_writing?.includes(content.slug)
       );
       related.push(...relatedWriting);
+    }
+  } else if (item.type === 'projects') {
+    const projectItem = item as ProjectItem;
+    
+    // Find related reading items
+    if (projectItem.related_reading) {
+      const relatedReading = allContent.filter(
+        content => content.type === 'reading' && 
+        projectItem.related_reading?.includes(content.slug)
+      );
+      related.push(...relatedReading);
+    }
+    
+    // Find related writing posts
+    if (projectItem.related_writing) {
+      const relatedWriting = allContent.filter(
+        content => content.type === 'writing' && 
+        projectItem.related_writing?.includes(content.slug)
+      );
+      related.push(...relatedWriting);
+    }
+    
+    // Find items this project was inspired by
+    if (projectItem.inspired_by) {
+      const inspirationSources = allContent.filter(
+        content => projectItem.inspired_by?.includes(content.slug)
+      );
+      related.push(...inspirationSources);
     }
   }
   
