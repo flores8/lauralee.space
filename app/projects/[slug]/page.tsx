@@ -5,9 +5,9 @@ import Link from 'next/link';
 import { MDXRemote } from 'next-mdx-remote/rsc';
 
 type Props = {
-  params: {
+  params: Promise<{
     slug: string;
-  };
+  }>;
 };
 
 export function generateStaticParams() {
@@ -18,8 +18,9 @@ export function generateStaticParams() {
   }));
 }
 
-export default function ProjectPage({ params }: Props) {
-  const project = getContentItemBySlug('projects', params.slug);
+export default async function ProjectPage({ params }: Props) {
+  const resolvedParams = await params;
+  const project = getContentItemBySlug('projects', resolvedParams.slug);
   
   if (!project) {
     notFound();

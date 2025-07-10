@@ -49,7 +49,7 @@ const sampleNotes: SideNote[] = [
 ];
 
 export default function SideNotesPage() {
-  const [notes, setNotes] = useState<SideNote[]>(sampleNotes);
+  const [notes] = useState<SideNote[]>(sampleNotes);
   const [selectedType, setSelectedType] = useState<string>('all');
   const [selectedTag, setSelectedTag] = useState<string>('all');
   const [sortBy, setSortBy] = useState<'date' | 'source'>('date');
@@ -178,7 +178,7 @@ export default function SideNotesPage() {
             </div>
 
             <blockquote className="text-lg text-gray-900 mb-4 italic">
-              "{note.content}"
+              &ldquo;{note.content}&rdquo;
             </blockquote>
 
             {note.source && (
