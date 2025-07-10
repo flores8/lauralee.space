@@ -1,44 +1,69 @@
-// app/writing/[slug]/page.tsx
+// app/reading/[slug]/page.tsx
 import { notFound } from 'next/navigation';
 import { MDXRemote } from 'next-mdx-remote/rsc';
 import Link from 'next/link';
 import { getContentItemBySlug, getRelatedContent } from '@/lib/content';
-import { WritingPost, ReadingItem } from '@/lib/types';
+import { ReadingItem } from '@/lib/types';
 
-interface PageProps {
-  params: Promise<{ slug: string }>;
-}
+type Props = {
+  params: Promise<{
+    slug: string;
+  }>;
+};
 
-export default async function PostPage({ params }: PageProps) {
+export default async function ReadingDetailPage({ params }: Props) {
   const { slug } = await params;
-  const item = getContentItemBySlug('writing', slug);
+  const item = getContentItemBySlug('reading', slug);
   
   if (!item) {
     notFound();
   }
   
-  const writingPost = item as WritingPost & { content: string };
-  const relatedContent = getRelatedContent(writingPost);
+  const readingItem = item as ReadingItem & { content: string };
+  const relatedContent = getRelatedContent(readingItem);
+  
+  const getStatusEmoji = (status: string) => {
+    switch (status) {
+      case 'completed': return '✓';
+      case 'reading': return '📖';
+      case 'want-to-read': return '📚';
+      default: return '📖';
+    }
+  };
+  
+  const getRatingStars = (rating?: number) => {
+    if (!rating) return null;
+    return '⭐'.repeat(rating);
+  };
 
   return (
     <div className="content-detail">
       <div className="content-header">
-        <Link href="/writing" className="back-link">
-          ← Back to Writing
+        <Link href="/reading" className="back-link">
+          ← Back to Reading
         </Link>
         
-        <div className="writing-header">
-          <h1>{writingPost.title}</h1>
+        <div className="reading-header">
+          <h1>{readingItem.title}</h1>
+          <p className="reading-author">by {readingItem.author}</p>
           
-          <div className="writing-meta">
-            <span className="writing-date">
-              {new Date(writingPost.date).toLocaleDateString()}
+          <div className="reading-meta">
+            <span className="reading-status">
+              {getStatusEmoji(readingItem.status)} {readingItem.status.replace('-', ' ')}
+            </span>
+            {readingItem.rating && (
+              <span className="reading-rating">
+                {getRatingStars(readingItem.rating)}
+              </span>
+            )}
+            <span className="reading-date">
+              {new Date(readingItem.date).toLocaleDateString()}
             </span>
           </div>
           
-          {writingPost.tags && writingPost.tags.length > 0 && (
+          {readingItem.tags && readingItem.tags.length > 0 && (
             <div className="content-tags">
-              {writingPost.tags.map((tag) => (
+              {readingItem.tags.map((tag) => (
                 <span key={tag} className="tag">{tag}</span>
               ))}
             </div>
@@ -47,7 +72,7 @@ export default async function PostPage({ params }: PageProps) {
       </div>
       
       <article className="content-body">
-        <MDXRemote source={writingPost.content} />
+        <MDXRemote source={readingItem.content} />
       </article>
       
       {relatedContent.length > 0 && (

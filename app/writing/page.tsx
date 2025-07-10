@@ -1,33 +1,10 @@
 // app/writing/page.tsx
-import fs from 'fs';
-import path from 'path';
-import matter from 'gray-matter';
 import Link from 'next/link';
-
-type Post = {
-  title: string;
-  slug: string;
-};
+import { getContentItems } from '@/lib/content';
+import { WritingPost } from '@/lib/types';
 
 export default function WritingPage() {
-  const postsDir = path.join(process.cwd(), 'content/writing');
-  const files = fs.readdirSync(postsDir);
-
-  const posts: Post[] = files
-    .map((filename) => {
-      const filePath = path.join(postsDir, filename);
-      const fileContent = fs.readFileSync(filePath, 'utf8');
-      const { data } = matter(fileContent);
-      
-      return {
-        title: data.title,
-        slug: data.slug,
-      };
-    })
-    .sort((a, b) => {
-      // Sort by title alphabetically since we're not showing dates
-      return a.title.localeCompare(b.title);
-    });
+  const posts = getContentItems('writing') as WritingPost[];
 
   return (
     <div>
@@ -43,7 +20,19 @@ export default function WritingPage() {
               <Link href={`/writing/${post.slug}`} className="post-item">
                 <span className="line-top"></span>
                 <span className="line-bottom"></span>
-                <h2 className="post-title">{post.title}</h2>
+                <div className="post-content">
+                  <h2 className="post-title">{post.title}</h2>
+                  <div className="post-meta">
+                    <span className="post-date">{new Date(post.date).toLocaleDateString()}</span>
+                    {post.tags && post.tags.length > 0 && (
+                      <div className="post-tags">
+                        {post.tags.map((tag) => (
+                          <span key={tag} className="tag">{tag}</span>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                </div>
               </Link>
             </li>
           ))}
