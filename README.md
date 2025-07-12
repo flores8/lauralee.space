@@ -52,3 +52,28 @@ This site gives me permission to explore.
 Thanks for peeking in.
 
 — Lauralee 🌱
+
+---
+
+## 🚀 Recent Updates
+
+### Side Notes Project Integration
+
+The Side Notes project now features full database integration with:
+
+- **PostgreSQL Database**: Connected to Neon database for production-ready data storage
+- **CRUD Operations**: Create, read, update, and delete side notes via REST API
+- **Rich Content Types**: Support for quotes, thoughts, ideas, and insights
+- **Contextual Metadata**: Page numbers, chapters, personal notes, mood tracking
+- **Connected Experience**: Links to related books and writing posts
+- **Filtering & Sorting**: Filter by type and tags, sort by date or source
+- **Real-time Updates**: Add new notes with immediate UI updates
+
+### Technical Implementation
+
+- **Frontend**: React with TypeScript, responsive design
+- **Backend**: Next.js API routes with Prisma ORM
+- **Database**: PostgreSQL with Neon hosting
+- **Styling**: Tailwind CSS for consistent design
+- **Forms**: Modal-based note creation with validation
+- **State Management**: React hooks for local state

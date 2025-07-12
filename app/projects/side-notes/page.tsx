@@ -1,58 +1,43 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { SideNote } from '@/lib/types';
-
-// Sample data - in a real app, this would come from your database
-const sampleNotes: SideNote[] = [
-  {
-    id: '1',
-    content: "You do not rise to the level of your goals. You fall to the level of your systems.",
-    type: 'quote',
-    source: 'Atomic Habits',
-    source_author: 'James Clear',
-    related_books: ['atomic-habits'],
-    related_writing: ['my-first-post'],
-    tags: ['productivity', 'systems', 'habits'],
-    date_added: '2024-01-15T10:30:00Z',
-    page_number: 27,
-    personal_note: 'This really resonated with me. It shifts the focus from outcomes to process.',
-    mood: 'inspired',
-    context: 'Reading during morning coffee'
-  },
-  {
-    id: '2',
-    content: "The design of everyday things is not just about making things look pretty. It's about making things work.",
-    type: 'thought',
-    source: 'The Design of Everyday Things',
-    source_author: 'Don Norman',
-    related_books: ['design-of-everyday-things'],
-    related_writing: ['my-second-post'],
-    tags: ['design', 'usability', 'functionality'],
-    date_added: '2024-01-20T14:15:00Z',
-    page_number: 156,
-    personal_note: 'This connects to my experience with designing user interfaces.',
-    mood: 'thoughtful',
-    context: 'After struggling with a poorly designed door handle'
-  },
-  {
-    id: '3',
-    content: "What if we treated our personal knowledge like a garden - something that needs tending, pruning, and connecting?",
-    type: 'idea',
-    tags: ['knowledge-management', 'personal-growth', 'metaphor'],
-    date_added: '2024-01-25T09:45:00Z',
-    personal_note: 'This came to me while working on this Side Notes project. The connections between ideas are like pathways in a garden.',
-    mood: 'curious',
-    context: 'Walking in the morning, thinking about how to organize thoughts'
-  }
-];
+import AddNoteModal from '@/app/components/AddNoteModal';
 
 export default function SideNotesPage() {
-  const [notes] = useState<SideNote[]>(sampleNotes);
+  const [notes, setNotes] = useState<SideNote[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [isAddModalOpen, setIsAddModalOpen] = useState(false);
   const [selectedType, setSelectedType] = useState<string>('all');
   const [selectedTag, setSelectedTag] = useState<string>('all');
   const [sortBy, setSortBy] = useState<'date' | 'source'>('date');
+
+  // Load notes from API
+  useEffect(() => {
+    const fetchNotes = async () => {
+      try {
+        setIsLoading(true);
+        const response = await fetch('/api/side-notes');
+        if (response.ok) {
+          const data = await response.json();
+          setNotes(data);
+        } else {
+          console.error('Failed to fetch notes');
+        }
+      } catch (error) {
+        console.error('Error fetching notes:', error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchNotes();
+  }, []);
+
+  const handleNoteAdded = (newNote: SideNote) => {
+    setNotes(prev => [newNote, ...prev]);
+  };
 
   const filteredNotes = notes.filter(note => {
     const typeMatch = selectedType === 'all' || note.type === selectedType;
@@ -154,9 +139,18 @@ export default function SideNotesPage() {
         </div>
       </div>
 
+      {/* Loading State */}
+      {isLoading && (
+        <div className="text-center py-12">
+          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600 mx-auto"></div>
+          <p className="text-gray-500 mt-2">Loading notes...</p>
+        </div>
+      )}
+
       {/* Notes Grid */}
-      <div className="grid gap-6">
-        {sortedNotes.map((note) => (
+      {!isLoading && (
+        <div className="grid gap-6">
+          {sortedNotes.map((note) => (
           <div key={note.id} className="border rounded-lg p-6 bg-white shadow-sm hover:shadow-md transition-shadow">
             <div className="flex items-start justify-between mb-4">
               <div className="flex items-center gap-3">
@@ -246,9 +240,10 @@ export default function SideNotesPage() {
             )}
           </div>
         ))}
-      </div>
+        </div>
+      )}
 
-      {sortedNotes.length === 0 && (
+      {!isLoading && sortedNotes.length === 0 && (
         <div className="text-center py-12 text-gray-500">
           <p>No notes found matching your filters.</p>
         </div>
@@ -258,16 +253,20 @@ export default function SideNotesPage() {
       <div className="fixed bottom-6 right-6">
         <button 
           className="bg-blue-600 text-white rounded-full p-4 shadow-lg hover:bg-blue-700 transition-colors"
-          onClick={() => {
-            // In a real app, this would open a form to add a new note
-            alert('Add note functionality would go here!');
-          }}
+          onClick={() => setIsAddModalOpen(true)}
         >
           <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
           </svg>
         </button>
       </div>
+
+      {/* Add Note Modal */}
+      <AddNoteModal 
+        isOpen={isAddModalOpen}
+        onClose={() => setIsAddModalOpen(false)}
+        onNoteAdded={handleNoteAdded}
+      />
     </div>
   );
 }
