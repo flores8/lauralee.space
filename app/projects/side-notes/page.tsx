@@ -67,21 +67,19 @@ export default function SideNotesPage() {
 
   return (
     <div className="content-section">
-      <div className="back-link-container">
-        <Link href="/projects" className="back-link">
-          ← Back to Projects
+      <div className="post-header">
+        <Link href="/projects" className="post-category">
+          PROJECTS
         </Link>
-      </div>
-
-      <header className="post-header">
         <div className="header-content">
-          <span className="header-icon">📝</span>
-          <h1 className="post-title">Side Notes</h1>
+          <h1 className="post-title">Side notes</h1>
         </div>
         <p className="post-subtitle">
           A collection of quotes, thoughts, and ideas that have struck a chord with me.
         </p>
-      </header>
+      </div>
+
+
 
       {/* Filters */}
       <div className="filter-section">
