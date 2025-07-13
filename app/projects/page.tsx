@@ -16,16 +16,6 @@ export default function ProjectsPage() {
     }
   };
 
-  const getTypeIcon = (type: string) => {
-    switch (type) {
-      case 'interactive': return '🎮';
-      case 'visualization': return '📊';
-      case 'archive': return '📝';
-      case 'tool': return '🛠️';
-      default: return '💡';
-    }
-  };
-
   return (
     <div className="content-section">
       <h1>Projects</h1>
