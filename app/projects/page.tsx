@@ -8,10 +8,11 @@ export default function ProjectsPage() {
 
   const getStatusColor = (status: string) => {
     switch (status) {
-      case 'completed': return 'bg-green-100 text-green-800';
-      case 'in-progress': return 'bg-blue-100 text-blue-800';
-      case 'maintained': return 'bg-purple-100 text-purple-800';
-      default: return 'bg-gray-100 text-gray-800';
+      case 'completed': return 'status-completed';
+      case 'in-progress': return 'status-in-progress';
+      case 'maintained': return 'status-maintained';
+      case 'idea': return 'status-idea';
+      default: return 'status-default';
     }
   };
 
@@ -28,43 +29,42 @@ export default function ProjectsPage() {
   return (
     <div className="content-section">
       <h1>Projects</h1>
-      <p>Creative experiments and side projects in motion.</p>
+      <p className="intro-text">Creative experiments and side projects in motion.</p>
       
-      <div className="grid gap-6 mt-8">
+      <div className="projects-grid">
         {projects.map((project) => (
-          <div key={project.slug} className="border rounded-lg p-6 hover:shadow-md transition-shadow">
-            <div className="flex items-start justify-between mb-4">
-              <div className="flex items-center gap-3">
-                <span className="text-2xl">{getTypeIcon(project.project_type)}</span>
-                <div>
-                  <h2 className="text-xl font-semibold">
-                    <Link href={`/projects/${project.slug}`} className="hover:text-blue-600">
+          <div key={project.slug} className="project-card">
+            <div className="project-header">
+              <div className="project-info">
+                <div className="project-details">
+                  <h2 className="project-title">
+                    <Link href={`/projects/${project.slug}`}>
                       {project.title}
                     </Link>
                   </h2>
-                  <div className="flex items-center gap-2 mt-1">
-                    <span className={`px-2 py-1 rounded-full text-xs font-medium ${getStatusColor(project.status)}`}>
+                  <div className="project-meta">
+                    <span className={`project-status ${getStatusColor(project.status)}`}>
                       {project.status.replace('-', ' ')}
                     </span>
-                    <span className="text-sm text-gray-500 capitalize">
+                    <span className="project-type">
                       {project.project_type}
                     </span>
                   </div>
                 </div>
               </div>
-              <time className="text-sm text-gray-500">
+              <time className="project-date">
                 {new Date(project.date).toLocaleDateString()}
               </time>
             </div>
             
             {project.excerpt && (
-              <p className="text-gray-700 mb-4">{project.excerpt}</p>
+              <p className="project-excerpt">{project.excerpt}</p>
             )}
             
             {project.tags && project.tags.length > 0 && (
-              <div className="flex flex-wrap gap-2 mb-4">
+              <div className="project-tags">
                 {project.tags.map((tag) => (
-                  <span key={tag} className="px-2 py-1 bg-gray-100 text-gray-700 rounded-full text-sm">
+                  <span key={tag} className="tag">
                     {tag}
                   </span>
                 ))}
@@ -72,27 +72,27 @@ export default function ProjectsPage() {
             )}
             
             {project.tech_stack && project.tech_stack.length > 0 && (
-              <div className="flex flex-wrap gap-2 mb-4">
-                <span className="text-sm text-gray-500">Tech:</span>
+              <div className="project-tech">
+                <span className="tech-label">Tech:</span>
                 {project.tech_stack.map((tech) => (
-                  <span key={tech} className="px-2 py-1 bg-blue-50 text-blue-700 rounded text-sm">
+                  <span key={tech} className="tech-tag">
                     {tech}
                   </span>
                 ))}
               </div>
             )}
             
-            <div className="flex items-center gap-4 text-sm">
-              <Link href={`/projects/${project.slug}`} className="text-blue-600 hover:underline">
-                View Project →
+            <div className="project-links">
+              <Link href={`/projects/${project.slug}`} className="project-link">
+                View project →
               </Link>
-              {project.demo_url && (
-                <a href={project.demo_url} target="_blank" rel="noopener noreferrer" className="text-green-600 hover:underline">
-                  Live Demo
+              {project.demo_url && project.demo_url !== `/projects/${project.slug}` && (
+                <a href={project.demo_url} target="_blank" rel="noopener noreferrer" className="project-link demo-link">
+                  Live demo
                 </a>
               )}
               {project.github_url && (
-                <a href={project.github_url} target="_blank" rel="noopener noreferrer" className="text-gray-600 hover:underline">
+                <a href={project.github_url} target="_blank" rel="noopener noreferrer" className="project-link github-link">
                   GitHub
                 </a>
               )}
@@ -102,7 +102,7 @@ export default function ProjectsPage() {
       </div>
       
       {projects.length === 0 && (
-        <div className="text-center py-12 text-gray-500">
+        <div className="projects-empty">
           <p>No projects yet. Check back soon!</p>
         </div>
       )}
