@@ -1333,6 +1333,372 @@ body.dark {
   font-style: italic;
 }
 
+/* Side Notes page specific styles */
+.back-link-container {
+  margin-bottom: var(--space-md);
+}
+
+.header-content {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  margin-bottom: var(--space-md);
+}
+
+.header-icon {
+  font-size: 3rem;
+  line-height: 1;
+}
+
+.filter-section {
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  padding: var(--space-lg);
+  margin-bottom: var(--space-lg);
+}
+
+.filter-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: var(--space-md);
+}
+
+.filter-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.filter-label {
+  font-family: var(--font-ui);
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--color-text);
+  margin-bottom: var(--space-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.filter-select {
+  font-family: var(--font-ui);
+  font-size: 0.875rem;
+  padding: var(--space-xs) var(--space-sm);
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  background: var(--color-paper);
+  color: var(--color-text);
+  transition: var(--transition);
+}
+
+.filter-select:focus {
+  outline: none;
+  border-color: var(--color-accent-pink);
+  box-shadow: 0 0 0 2px rgba(212, 165, 165, 0.2);
+}
+
+.loading-state {
+  text-align: center;
+  padding: var(--space-xl) 0;
+}
+
+.loading-spinner {
+  width: 2rem;
+  height: 2rem;
+  border: 2px solid var(--color-border);
+  border-top: 2px solid var(--color-accent-pink);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin: 0 auto var(--space-sm);
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.loading-text {
+  font-size: 1.125rem;
+  color: var(--color-muted);
+  font-family: var(--font-ui);
+}
+
+.notes-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-lg);
+  margin-bottom: var(--space-xl);
+}
+
+.note-card {
+  position: relative;
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  padding: var(--space-lg);
+  transition: var(--transition-slow);
+  transform: rotate(-0.5deg);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.note-card:nth-child(even) {
+  transform: rotate(0.5deg);
+}
+
+.note-card:nth-child(3n) {
+  transform: rotate(-0.25deg);
+}
+
+.note-card:hover {
+  transform: rotate(0deg) translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+}
+
+.note-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: var(--space-md);
+}
+
+.note-meta {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.note-icon {
+  font-size: 2rem;
+  line-height: 1;
+}
+
+.note-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-xs);
+}
+
+.note-type-badge {
+  font-family: var(--font-ui);
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: calc(var(--space-xs) * 0.5) var(--space-sm);
+  background: var(--color-accent-pink);
+  color: var(--color-text);
+  border-radius: 16px;
+  text-transform: capitalize;
+  letter-spacing: 0.05em;
+}
+
+.note-mood-badge {
+  font-family: var(--font-ui);
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: calc(var(--space-xs) * 0.5) var(--space-sm);
+  background: var(--color-accent-yellow);
+  color: var(--color-text);
+  border-radius: 16px;
+  text-transform: capitalize;
+  letter-spacing: 0.05em;
+}
+
+.note-date {
+  font-family: var(--font-ui);
+  font-size: 0.875rem;
+  color: var(--color-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.note-content {
+  font-size: 1.5rem;
+  line-height: 1.6;
+  color: var(--color-text);
+  margin-bottom: var(--space-md);
+  font-style: italic;
+  position: relative;
+  padding-left: var(--space-md);
+}
+
+.note-content::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background: var(--color-accent-pink);
+  border-radius: 2px;
+}
+
+.note-source {
+  background: var(--color-paper);
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  padding: var(--space-sm);
+  margin-bottom: var(--space-md);
+}
+
+.source-text {
+  font-family: var(--font-ui);
+  font-size: 0.875rem;
+  color: var(--color-text);
+  margin: 0;
+}
+
+.source-label {
+  font-weight: 600;
+  color: var(--color-accent-blue);
+}
+
+.note-personal {
+  background: var(--color-accent-pink);
+  border-radius: 6px;
+  padding: var(--space-sm);
+  margin-bottom: var(--space-md);
+  opacity: 0.9;
+}
+
+.personal-text {
+  font-family: var(--font-ui);
+  font-size: 0.875rem;
+  color: var(--color-text);
+  margin: 0;
+}
+
+.personal-label {
+  font-weight: 600;
+}
+
+.note-context {
+  background: var(--color-accent-green);
+  border-radius: 6px;
+  padding: var(--space-sm);
+  margin-bottom: var(--space-md);
+  opacity: 0.9;
+}
+
+.context-text {
+  font-family: var(--font-ui);
+  font-size: 0.875rem;
+  color: var(--color-text);
+  margin: 0;
+}
+
+.context-label {
+  font-weight: 600;
+}
+
+.note-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-xs);
+  margin-bottom: var(--space-md);
+}
+
+.note-related {
+  border-top: 1px solid var(--color-border);
+  padding-top: var(--space-md);
+}
+
+.related-title {
+  font-family: var(--font-ui);
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--color-text);
+  margin-bottom: var(--space-sm);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.related-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-xs);
+}
+
+.related-link {
+  font-family: var(--font-ui);
+  font-size: 0.75rem;
+  font-weight: 500;
+  padding: calc(var(--space-xs) * 0.5) var(--space-sm);
+  border-radius: 12px;
+  text-decoration: none;
+  border-bottom: none;
+  transition: var(--transition);
+  text-transform: lowercase;
+  letter-spacing: 0.05em;
+}
+
+.reading-link {
+  background: var(--color-accent-blue);
+  color: white;
+}
+
+.reading-link:hover {
+  background: #3d5a84;
+  color: white;
+  transform: translateY(-1px);
+}
+
+.writing-link {
+  background: var(--color-accent-green);
+  color: var(--color-text);
+}
+
+.writing-link:hover {
+  background: #6a9a5a;
+  color: var(--color-text);
+  transform: translateY(-1px);
+}
+
+.related-link::before {
+  display: none;
+}
+
+.empty-state {
+  text-align: center;
+  padding: var(--space-xl) 0;
+  color: var(--color-muted);
+}
+
+.empty-text {
+  font-size: 1.25rem;
+  margin: 0;
+}
+
+.add-note-button-container {
+  position: fixed;
+  bottom: var(--space-md);
+  right: var(--space-md);
+  z-index: 100;
+}
+
+.add-note-button {
+  background: var(--color-accent-pink);
+  color: var(--color-text);
+  border: none;
+  border-radius: 50%;
+  width: 3.5rem;
+  height: 3.5rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  transition: var(--transition);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.add-note-button:hover {
+  background: var(--color-accent-pink-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+}
+
+.add-icon {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
 /* Projects page specific styles */
 .projects-grid {
   display: grid;
@@ -1768,5 +2134,70 @@ body.dark {
   .project-status {
     font-size: 0.7rem;
     padding: 2px var(--space-xs);
+  }
+  
+  /* Side Notes page responsive adjustments */
+  .filter-grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-sm);
+  }
+  
+  .note-card {
+    padding: var(--space-md);
+    transform: none;
+  }
+  
+  .note-card:hover {
+    transform: translateY(-2px);
+  }
+  
+  .note-content {
+    font-size: 1.25rem;
+  }
+  
+  .note-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-sm);
+  }
+  
+  .note-meta {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-xs);
+  }
+  
+  .note-icon {
+    font-size: 1.5rem;
+  }
+  
+  .note-badges {
+    gap: var(--space-xs);
+  }
+  
+  .note-type-badge,
+  .note-mood-badge {
+    font-size: 0.7rem;
+    padding: 2px var(--space-xs);
+  }
+  
+  .related-links {
+    flex-direction: column;
+    gap: var(--space-xs);
+  }
+  
+  .related-link {
+    font-size: 0.7rem;
+    padding: 2px var(--space-xs);
+  }
+  
+  .add-note-button {
+    width: 3rem;
+    height: 3rem;
+  }
+  
+  .add-icon {
+    width: 1.25rem;
+    height: 1.25rem;
   }
 }
