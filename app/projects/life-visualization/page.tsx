@@ -74,7 +74,7 @@ export default function LifeVisualizationPage() {
           <h1 className="post-title">Life visualization</h1>
         </div>
         <p className="post-subtitle">
-          A visual representation of your life's timeline - showing how much time has passed and how much potentially remains.
+          A visual representation of your life&apos;s timeline - showing how much time has passed and how much potentially remains.
         </p>
       </div>
 
@@ -195,13 +195,13 @@ export default function LifeVisualizationPage() {
             <h2 className="reflection-title">Perspective</h2>
             <div className="reflection-content">
               <p className="reflection-text">
-                You've lived approximately <strong>{formatNumber(lifeStats.daysLived)} days</strong> so far. 
-                That's {formatNumber(lifeStats.weeksLived)} weeks, {formatNumber(lifeStats.monthsLived)} months, 
+                You&apos;ve lived approximately <strong>{formatNumber(lifeStats.daysLived)} days</strong> so far. 
+                That&apos;s {formatNumber(lifeStats.weeksLived)} weeks, {formatNumber(lifeStats.monthsLived)} months, 
                 or {lifeStats.yearsLived} years of experiences, growth, and memories.
               </p>
               <p className="reflection-text">
                 If you live to the average life expectancy, you have roughly <strong>{formatNumber(lifeStats.daysRemaining)} days</strong> remaining. 
-                That's {formatNumber(lifeStats.weeksRemaining)} weeks, {formatNumber(lifeStats.monthsRemaining)} months, 
+                That&apos;s {formatNumber(lifeStats.weeksRemaining)} weeks, {formatNumber(lifeStats.monthsRemaining)} months, 
                 or {lifeStats.yearsRemaining} years to create, learn, love, and make a difference.
               </p>
               <p className="reflection-text">
@@ -298,7 +298,7 @@ export default function LifeVisualizationPage() {
             <div className="instructions-card">
               <h2 className="instructions-title">Get started</h2>
               <p className="instructions-text">
-                Enter your birth date above to see a visual representation of your life's timeline. 
+                Enter your birth date above to see a visual representation of your life&apos;s timeline. 
                 This tool uses the average life expectancy of {averageLifeExpectancy} years to provide perspective on time.
               </p>
               <p className="instructions-text">
