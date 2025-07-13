@@ -8,7 +8,7 @@ function ReadingPageLoading() {
   return (
     <div className="content-section">
       <h1>Reading</h1>
-      <p>Books I'm loving and learning from.</p>
+      <p>Books I&apos;m loving and learning from.</p>
       <div style={{ padding: '2rem 0', textAlign: 'center', color: 'var(--color-muted)' }}>
         Loading books...
       </div>

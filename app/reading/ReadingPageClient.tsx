@@ -67,7 +67,7 @@ export default function ReadingPageClient({ readingItems }: ReadingPageClientPro
     <div>
       <div className="content-section">
         <h1>Reading</h1>
-        <p>Books I'm loving and learning from.</p>
+        <p>Books I&apos;m loving and learning from.</p>
       </div>
       
       {/* Tag Filter Section */}
