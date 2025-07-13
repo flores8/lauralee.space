@@ -1,7 +1,8 @@
 'use client';
 
 import Link from 'next/link';
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { WritingPost } from '@/lib/types';
 
 interface WritingPageClientProps {
@@ -9,7 +10,15 @@ interface WritingPageClientProps {
 }
 
 export default function WritingPageClient({ posts }: WritingPageClientProps) {
+  const router = useRouter();
+  const searchParams = useSearchParams();
   const [selectedTag, setSelectedTag] = useState<string | null>(null);
+
+  // Initialize selected tag from URL parameter
+  useEffect(() => {
+    const tagParam = searchParams.get('tag');
+    setSelectedTag(tagParam);
+  }, [searchParams]);
 
   // Get all unique tags from posts
   const allTags = useMemo(() => {
@@ -29,7 +38,15 @@ export default function WritingPageClient({ posts }: WritingPageClientProps) {
   }, [posts, selectedTag]);
 
   const handleTagClick = (tag: string) => {
-    setSelectedTag(selectedTag === tag ? null : tag);
+    const newTag = selectedTag === tag ? null : tag;
+    setSelectedTag(newTag);
+    
+    // Update URL
+    if (newTag) {
+      router.push(`/writing?tag=${encodeURIComponent(newTag)}`);
+    } else {
+      router.push('/writing');
+    }
   };
 
   return (
