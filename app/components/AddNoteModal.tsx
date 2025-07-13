@@ -100,47 +100,47 @@ export default function AddNoteModal({ isOpen, onClose, onNoteAdded }: AddNoteMo
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
-      <div className="bg-white rounded-lg max-w-2xl w-full max-h-[90vh] overflow-y-auto">
-        <div className="p-6">
-          <div className="flex justify-between items-center mb-6">
-            <h2 className="text-2xl font-bold">Add New Note</h2>
-            <button
-              onClick={onClose}
-              className="text-gray-500 hover:text-gray-700"
-            >
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-              </svg>
-            </button>
-          </div>
+    <div className="modal-overlay">
+      <div className="modal-content">
+        <div className="modal-header">
+          <h2 className="modal-title">Add new note</h2>
+          <button
+            onClick={onClose}
+            className="modal-close-button"
+          >
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+        </div>
 
-          <form onSubmit={handleSubmit} className="space-y-4">
+        <div className="modal-body">
+          <form onSubmit={handleSubmit} className="modal-form">
             {/* Content */}
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+            <div className="form-group">
+              <label className="form-label">
                 Content *
               </label>
               <textarea
                 value={formData.content}
                 onChange={(e) => setFormData(prev => ({ ...prev, content: e.target.value }))}
                 required
-                className="w-full p-3 border rounded-md resize-none"
+                className="form-textarea"
                 rows={4}
                 placeholder="Enter your quote, thought, idea, or insight..."
               />
             </div>
 
             {/* Type */}
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+            <div className="form-group">
+              <label className="form-label">
                 Type *
               </label>
               <select
                 value={formData.type}
                 onChange={(e) => setFormData(prev => ({ ...prev, type: e.target.value as 'quote' | 'thought' | 'idea' | 'insight' }))}
                 required
-                className="w-full p-2 border rounded-md"
+                className="form-select"
               >
                 <option value="quote">Quote</option>
                 <option value="thought">Thought</option>
@@ -150,106 +150,106 @@ export default function AddNoteModal({ isOpen, onClose, onNoteAdded }: AddNoteMo
             </div>
 
             {/* Source and Author */}
-            <div className="grid md:grid-cols-2 gap-4">
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+            <div className="form-grid">
+              <div className="form-group">
+                <label className="form-label">
                   Source
                 </label>
                 <input
                   type="text"
                   value={formData.source}
                   onChange={(e) => setFormData(prev => ({ ...prev, source: e.target.value }))}
-                  className="w-full p-2 border rounded-md"
+                  className="form-input"
                   placeholder="Book title, article, etc."
                 />
               </div>
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+              <div className="form-group">
+                <label className="form-label">
                   Author
                 </label>
                 <input
                   type="text"
                   value={formData.source_author}
                   onChange={(e) => setFormData(prev => ({ ...prev, source_author: e.target.value }))}
-                  className="w-full p-2 border rounded-md"
+                  className="form-input"
                   placeholder="Author name"
                 />
               </div>
             </div>
 
             {/* Page Number and Chapter */}
-            <div className="grid md:grid-cols-2 gap-4">
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Page Number
+            <div className="form-grid">
+              <div className="form-group">
+                <label className="form-label">
+                  Page number
                 </label>
                 <input
                   type="number"
                   value={formData.page_number}
                   onChange={(e) => setFormData(prev => ({ ...prev, page_number: e.target.value }))}
-                  className="w-full p-2 border rounded-md"
+                  className="form-input"
                   placeholder="Page number"
                 />
               </div>
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+              <div className="form-group">
+                <label className="form-label">
                   Chapter
                 </label>
                 <input
                   type="text"
                   value={formData.chapter}
                   onChange={(e) => setFormData(prev => ({ ...prev, chapter: e.target.value }))}
-                  className="w-full p-2 border rounded-md"
+                  className="form-input"
                   placeholder="Chapter name/number"
                 />
               </div>
             </div>
 
             {/* Personal Note */}
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
-                Personal Note
+            <div className="form-group">
+              <label className="form-label">
+                Personal note
               </label>
               <textarea
                 value={formData.personal_note}
                 onChange={(e) => setFormData(prev => ({ ...prev, personal_note: e.target.value }))}
-                className="w-full p-2 border rounded-md resize-none"
+                className="form-textarea"
                 rows={2}
                 placeholder="Your thoughts and reactions..."
               />
             </div>
 
             {/* Mood and Context */}
-            <div className="grid md:grid-cols-2 gap-4">
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+            <div className="form-grid">
+              <div className="form-group">
+                <label className="form-label">
                   Mood
                 </label>
                 <input
                   type="text"
                   value={formData.mood}
                   onChange={(e) => setFormData(prev => ({ ...prev, mood: e.target.value }))}
-                  className="w-full p-2 border rounded-md"
+                  className="form-input"
                   placeholder="How you felt (inspired, thoughtful, etc.)"
                 />
               </div>
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+              <div className="form-group">
+                <label className="form-label">
                   Context
                 </label>
                 <input
                   type="text"
                   value={formData.context}
                   onChange={(e) => setFormData(prev => ({ ...prev, context: e.target.value }))}
-                  className="w-full p-2 border rounded-md"
+                  className="form-input"
                   placeholder="Where/when you captured this"
                 />
               </div>
             </div>
 
             {/* Tags */}
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+            <div className="form-group">
+              <label className="form-label">
                 Tags
               </label>
               <input
@@ -257,21 +257,21 @@ export default function AddNoteModal({ isOpen, onClose, onNoteAdded }: AddNoteMo
                 value={tagInput}
                 onChange={(e) => setTagInput(e.target.value)}
                 onKeyDown={handleTagAdd}
-                className="w-full p-2 border rounded-md"
+                className="form-input"
                 placeholder="Type a tag and press Enter"
               />
               {formData.tags.length > 0 && (
-                <div className="flex flex-wrap gap-2 mt-2">
+                <div className="tag-list">
                   {formData.tags.map((tag) => (
                     <span
                       key={tag}
-                      className="inline-flex items-center gap-1 px-2 py-1 bg-gray-100 text-gray-700 rounded-full text-sm"
+                      className="tag-item"
                     >
                       {tag}
                       <button
                         type="button"
                         onClick={() => removeTag(tag)}
-                        className="text-gray-500 hover:text-gray-700"
+                        className="tag-remove-button"
                       >
                         ×
                       </button>
@@ -280,25 +280,25 @@ export default function AddNoteModal({ isOpen, onClose, onNoteAdded }: AddNoteMo
                 </div>
               )}
             </div>
-
-            {/* Submit buttons */}
-            <div className="flex justify-end gap-3 pt-4">
-              <button
-                type="button"
-                onClick={onClose}
-                className="px-4 py-2 text-gray-700 border border-gray-300 rounded-md hover:bg-gray-50"
-              >
-                Cancel
-              </button>
-              <button
-                type="submit"
-                disabled={isSubmitting}
-                className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 disabled:opacity-50"
-              >
-                {isSubmitting ? 'Adding...' : 'Add Note'}
-              </button>
-            </div>
           </form>
+        </div>
+
+        <div className="modal-footer">
+          <button
+            type="button"
+            onClick={onClose}
+            className="btn btn-secondary"
+          >
+            Cancel
+          </button>
+          <button
+            type="submit"
+            disabled={isSubmitting}
+            onClick={handleSubmit}
+            className="btn btn-primary"
+          >
+            {isSubmitting ? 'Adding...' : 'Add note'}
+          </button>
         </div>
       </div>
     </div>
